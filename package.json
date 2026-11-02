@@ -1,7 +1,7 @@
 {
   "name": "backend-ii---comision-95280",
   "version": "1.0.0",
-  "description": "",
+  "description": "API REST para una plataforma de torneos deportivos: torneos, disciplinas, jugadores e inscripciones",
   "homepage": "https://github.com/DavidZD02/Backend-II---Comision-95280#readme",
   "bugs": {
     "url": "https://github.com/DavidZD02/Backend-II---Comision-95280/issues"
@@ -15,11 +15,12 @@
   "type": "module",
   "main": "src/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "node --watch src/server.js"
+    "start": "node ./src/server.js",
+    "dev": "node --watch ./src/server.js"
   },
   "dependencies": {
     "dotenv": "^18.0.9",
-    "express": "^5.3.0"
+    "express": "^5.3.0",
+    "mongoose": "^9.11.4"
   }
 }
