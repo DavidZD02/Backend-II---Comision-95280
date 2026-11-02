@@ -33,8 +33,8 @@ Próximas entregas: bcrypt, JWT, Passport, cookie-parser y Nodemailer.
 1. Clonar el repositorio:
 
 ```bash
-git clone https://github.com/DavidZD02/torneos-deportivos-api.git
-cd torneos-deportivos-api
+git clone https://github.com/DavidZD02/Backend-II---Comision-95280.git
+cd Backend-II---Comision-95280
 ```
 
 2. Instalar las dependencias:
