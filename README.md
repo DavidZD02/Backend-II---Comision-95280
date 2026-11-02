@@ -175,7 +175,7 @@ Ambos modelos incluyen `createdAt` y `updatedAt` (`timestamps: true`).
 ## Estructura de carpetas
 
 ```
-torneos-deportivos-api/
+Backend-II---Comision-95280//
 ├── src/
 │   ├── app.js
 │   ├── server.js
