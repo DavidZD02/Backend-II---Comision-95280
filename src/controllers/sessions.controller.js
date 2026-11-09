@@ -1,4 +1,3 @@
-// Estructura inicial: la autenticación se implementa en la próxima entrega.
 const notImplemented = (action) => (req, res) => {
   res.status(501).json({
     status: "error",
@@ -6,7 +5,11 @@ const notImplemented = (action) => (req, res) => {
   });
 };
 
-export const register = notImplemented("Registro");
+export const register = (sessionsService) => async (req, res) => {
+  const user = await sessionsService.register(req.body);
+  res.status(201).json({ status: "success", payload: user });
+};
+
 export const login = notImplemented("Login");
 export const current = notImplemented("Usuario actual");
 export const logout = notImplemented("Logout");
