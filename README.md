@@ -213,6 +213,16 @@ Casos verificados:
 | 6 | Respuesta del endpoint | El `payload` no incluye `password` (ni en texto plano ni hasheada) |
 | 7 | Envío de `"role": "admin"` en el body | `201` con `"role": "user"`: el rol se ignora |
 
+#### Evidencias
+
+Respuesta del registro exitoso (sin el campo `password`):
+
+![Respuesta del registro en Postman](docs/register-postman.png)
+
+Usuario guardado en MongoDB Atlas con la contraseña hasheada:
+
+![Usuario en MongoDB Atlas](docs/register-atlas.png)
+
 ### Rutas pendientes de `sessions` → `501`
 
 Tienen ruta y controlador propios, pero todavía sin lógica de autenticación:
@@ -344,6 +354,9 @@ Backend-II---Comision-95280/
 │   └── utils/
 │       ├── hash.js
 │       └── appError.js
+├── docs/
+│   ├── register-postman.png
+│   └── register-atlas.png
 ├── .env.example
 ├── .gitignore
 ├── package.json
