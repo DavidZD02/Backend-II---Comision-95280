@@ -25,5 +25,9 @@ export const login = (sessionsService) => async (req, res) => {
   res.status(200).json({ status: "success", message: "Login correcto" });
 };
 
-export const current = notImplemented("Usuario actual");
+export const current = (req, res) => {
+  const { id, email, role } = req.user;
+  res.status(200).json({ status: "success", payload: { id, email, role } });
+};
+
 export const logout = notImplemented("Logout");
