@@ -4,7 +4,7 @@ import { register, login, current, logout } from "../controllers/sessions.contro
 export default function createSessionsRouter(sessionsService) {
   const router = Router();
   router.post("/register", register(sessionsService));
-  router.post("/login", login);
+  router.post("/login", login(sessionsService));
   router.get("/current", current);
   router.post("/logout", logout);
 

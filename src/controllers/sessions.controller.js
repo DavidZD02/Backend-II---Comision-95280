@@ -1,3 +1,12 @@
+import { env } from "../config/env.config.js";
+
+const cookieOptions = {
+  httpOnly: true,
+  sameSite: "lax",
+  maxAge: 3600000, // 1 hora
+  secure: env.NODE_ENV === "production",
+};
+
 const notImplemented = (action) => (req, res) => {
   res.status(501).json({
     status: "error",
@@ -10,6 +19,11 @@ export const register = (sessionsService) => async (req, res) => {
   res.status(201).json({ status: "success", payload: user });
 };
 
-export const login = notImplemented("Login");
+export const login = (sessionsService) => async (req, res) => {
+  const { token } = await sessionsService.login(req.body);
+  res.cookie("currentUser", token, cookieOptions);
+  res.status(200).json({ status: "success", message: "Login correcto" });
+};
+
 export const current = notImplemented("Usuario actual");
 export const logout = notImplemented("Logout");
