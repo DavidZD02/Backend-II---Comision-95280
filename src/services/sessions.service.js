@@ -1,6 +1,7 @@
 import UserDTO from "../dto/user.dto.js";
 import AppError from "../utils/appError.js";
-import { createHash } from "../utils/hash.js";
+import { createHash, isValidPassword } from "../utils/hash.js";
+import { generateToken } from "../utils/jwt.js";
 
 export default class SessionsService {
   constructor(usersRepository) {
@@ -41,5 +42,26 @@ export default class SessionsService {
       password: hashedPassword,
     });
     return new UserDTO(newUser);
+  }
+
+  async login({ email, password }) {
+    AppError.assert(email && password, "Faltan campos obligatorios", 400);
+    AppError.assert(
+      [email, password].every((field) => typeof field === "string"),
+      "Los campos deben ser de tipo string",
+      400,
+    );
+    email = email.trim().toLowerCase();
+    AppError.assert(
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email),
+      "Formato de email inválido",
+      400,
+    );
+    const existingUser = await this.usersRepository.getByEmail(email);
+    AppError.assert(existingUser, "Credenciales inválidas", 401);
+    const isPasswordValid = await isValidPassword(password, existingUser.password);
+    AppError.assert(isPasswordValid, "Credenciales inválidas", 401);
+    const token = generateToken({ id: existingUser._id, email: existingUser.email, role: existingUser.role });
+    return { token, user: new UserDTO(existingUser) };
   }
 }

@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from "cookie-parser";
 
 import EventsDAO from "./dao/events.dao.js";
 import EventsRepository from "./repositories/events.repository.js";
@@ -27,6 +28,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 app.use("/api/health", healthRouter);
 app.use("/api/events", createEventsRouter(eventsService));
